@@ -1,0 +1,5 @@
+PyQt5==5.15.10
+reportlab==4.0.7
+svgwrite==1.4.3
+pandas==2.1.4
+Pillow==10.2.0
