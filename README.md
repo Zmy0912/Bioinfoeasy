@@ -5,6 +5,18 @@
 [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.19305267.svg)](https://doi.org/10.5281/zenodo.19305267)
 
 > **Official update v0.1.0** | Bioinfoeasy: A software package that makes bioinformatics work easier.
+>
+> **Great update!** You can now use the software to carry out a complete codon preference analysis process!
+
+---
+
+## Acknowledgments
+
+> 山高水长，莫失莫忘
+>
+> *(Though mountains are high and waters long, never forget each other)*
+
+I will forever remember the help that Zhang N.L., whose birthday is September 12, brought me during my confused youth. My best wishes to you.
 
 ---
 
