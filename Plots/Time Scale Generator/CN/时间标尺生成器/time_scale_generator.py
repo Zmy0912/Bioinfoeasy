@@ -31,30 +31,30 @@ GEOLOGICAL_ERAS = [
 
 # 地质纪数据
 GEOLOGICAL_PERIODS = [
-    {"name": "第四纪", "start": 0, "end": 2.588, "color": "#98FB98"},
-    {"name": "新近纪", "start": 2.588, "end": 23.03, "color": "#8FBC8F"},
-    {"name": "古近纪", "start": 23.03, "end": 66, "color": "#7CFC00"},
-    {"name": "白垩纪", "start": 66, "end": 145, "color": "#F0E68C"},
-    {"name": "侏罗纪", "start": 145, "end": 201, "color": "#BDB76B"},
-    {"name": "三叠纪", "start": 201, "end": 252, "color": "#DAA520"},
-    {"name": "二叠纪", "start": 252, "end": 299, "color": "#FF6347"},
-    {"name": "石炭纪", "start": 299, "end": 359, "color": "#FF4500"},
-    {"name": "泥盆纪", "start": 359, "end": 419, "color": "#DC143C"},
-    {"name": "志留纪", "start": 419, "end": 444, "color": "#FF7F50"},
-    {"name": "奥陶纪", "start": 444, "end": 485, "color": "#FFDAB9"},
-    {"name": "寒武纪", "start": 485, "end": 541, "color": "#FFE4B5"},
-    {"name": "埃迪卡拉纪", "start": 541, "end": 635, "color": "#D8BFD8"},
-    {"name": "成冰纪", "start": 635, "end": 850, "color": "#DA70D6"},
-    {"name": "拉伸纪", "start": 850, "end": 1000, "color": "#BA55D3"},
-    {"name": "狭带纪", "start": 1000, "end": 1200, "color": "#9370DB"},
-    {"name": "成铁纪", "start": 1200, "end": 1400, "color": "#8A2BE2"},
-    {"name": "层侵纪", "start": 1400, "end": 1600, "color": "#800080"},
-    {"name": "造山纪", "start": 1600, "end": 1800, "color": "#7B68EE"},
-    {"name": "固结纪", "start": 1800, "end": 2050, "color": "#6A5ACD"},
-    {"name": "盖层纪", "start": 2050, "end": 2300, "color": "#483D8B"},
-    {"name": "造山纪", "start": 2300, "end": 2500, "color": "#4169E1"},
-    {"name": "太古宙", "start": 2500, "end": 4000, "color": "#6495ED"},
-    {"name": "冥古宙", "start": 4000, "end": 4600, "color": "#87CEEB"},
+    {"name": "第四纪", "start": 0, "end": 2.588, "color": "#98FB98", "era": "新生代"},
+    {"name": "新近纪", "start": 2.588, "end": 23.03, "color": "#8FBC8F", "era": "新生代"},
+    {"name": "古近纪", "start": 23.03, "end": 66, "color": "#7CFC00", "era": "新生代"},
+    {"name": "白垩纪", "start": 66, "end": 145, "color": "#F0E68C", "era": "中生代"},
+    {"name": "侏罗纪", "start": 145, "end": 201, "color": "#BDB76B", "era": "中生代"},
+    {"name": "三叠纪", "start": 201, "end": 252, "color": "#DAA520", "era": "中生代"},
+    {"name": "二叠纪", "start": 252, "end": 299, "color": "#FF6347", "era": "古生代"},
+    {"name": "石炭纪", "start": 299, "end": 359, "color": "#FF4500", "era": "古生代"},
+    {"name": "泥盆纪", "start": 359, "end": 419, "color": "#DC143C", "era": "古生代"},
+    {"name": "志留纪", "start": 419, "end": 444, "color": "#FF7F50", "era": "古生代"},
+    {"name": "奥陶纪", "start": 444, "end": 485, "color": "#FFDAB9", "era": "古生代"},
+    {"name": "寒武纪", "start": 485, "end": 541, "color": "#FFE4B5", "era": "古生代"},
+    {"name": "埃迪卡拉纪", "start": 541, "end": 635, "color": "#D8BFD8", "era": "前寒武纪"},
+    {"name": "成冰纪", "start": 635, "end": 850, "color": "#DA70D6", "era": "前寒武纪"},
+    {"name": "拉伸纪", "start": 850, "end": 1000, "color": "#BA55D3", "era": "前寒武纪"},
+    {"name": "狭带纪", "start": 1000, "end": 1200, "color": "#9370DB", "era": "前寒武纪"},
+    {"name": "成铁纪", "start": 1200, "end": 1400, "color": "#8A2BE2", "era": "前寒武纪"},
+    {"name": "层侵纪", "start": 1400, "end": 1600, "color": "#800080", "era": "前寒武纪"},
+    {"name": "造山纪", "start": 1600, "end": 1800, "color": "#7B68EE", "era": "前寒武纪"},
+    {"name": "固结纪", "start": 1800, "end": 2050, "color": "#6A5ACD", "era": "前寒武纪"},
+    {"name": "盖层纪", "start": 2050, "end": 2300, "color": "#483D8B", "era": "前寒武纪"},
+    {"name": "造山纪", "start": 2300, "end": 2500, "color": "#4169E1", "era": "前寒武纪"},
+    {"name": "太古宙", "start": 2500, "end": 4000, "color": "#6495ED", "era": "前寒武纪"},
+    {"name": "冥古宙", "start": 4000, "end": 4600, "color": "#87CEEB", "era": "前寒武纪"},
 ]
 
 class TimeScaleElement:
@@ -108,7 +108,7 @@ class TimeScaleRenderer(QWidget):
         self.label_color = QColor(0, 0, 0)
         self.background_color = QColor(255, 255, 255)
         self.selected_element = None
-        self.geological_scale_type = "era"  # era (代), period (纪)
+        self.geological_scale_type = "era"  # era (代), period (纪), both (代和纪)
         self.custom_elements = []
 
         self.setMouseTracking(True)
@@ -337,31 +337,67 @@ class TimeScaleRenderer(QWidget):
 
     def generate_geological_scale(self, min_mya, max_mya):
         """生成地质年代标尺"""
+        # 根据地质年代类型确定是否显示代和纪
         if self.geological_scale_type == "era":
-            geo_data = GEOLOGICAL_ERAS
-            scale_size = 30
-        else:
-            geo_data = GEOLOGICAL_PERIODS
-            scale_size = 25
+            show_era = True
+            show_period = False
+        elif self.geological_scale_type == "period":
+            show_era = False
+            show_period = True
+        else:  # both
+            show_era = True
+            show_period = True
 
         # 根据标尺方向确定地质年代标尺位置
         if self.start_direction == "top":
-            scale_pos = 300 - scale_size - 10
+            base_scale_pos = 300
             is_horizontal = True
             scale_start = 50
         elif self.start_direction == "bottom":
-            scale_pos = 300 + self.scale_thickness + 10
+            base_scale_pos = 300 + self.scale_thickness
             is_horizontal = True
             scale_start = 50
         elif self.start_direction == "left":
-            scale_pos = 400 - scale_size - 10
+            base_scale_pos = 400
             is_horizontal = False
             scale_start = 50
         else:  # right
-            scale_pos = 400 + self.scale_thickness + 10
+            base_scale_pos = 400 + self.scale_thickness
             is_horizontal = False
             scale_start = 50
 
+        # 显示代（外层）
+        if show_era:
+            era_scale_size = 30
+            if is_horizontal:
+                scale_pos = base_scale_pos + 10
+            else:
+                scale_pos = base_scale_pos + 10
+            
+            self._generate_single_layer(GEOLOGICAL_ERAS, min_mya, max_mya, scale_pos,
+                                        scale_start, era_scale_size, is_horizontal, is_era=True)
+
+        # 显示纪（内层，在代的内部）
+        if show_period:
+            period_scale_size = 25
+            if show_era:
+                # 如果同时显示代和纪，纪在代的外侧
+                if is_horizontal:
+                    scale_pos = base_scale_pos + 30 + 10 + 5  # 代的高度 + 间距
+                else:
+                    scale_pos = base_scale_pos + 30 + 10 + 5
+            else:
+                # 如果只显示纪
+                if is_horizontal:
+                    scale_pos = base_scale_pos + 10
+                else:
+                    scale_pos = base_scale_pos + 10
+            
+            self._generate_single_layer(GEOLOGICAL_PERIODS, min_mya, max_mya, scale_pos,
+                                        scale_start, period_scale_size, is_horizontal, is_era=False)
+
+    def _generate_single_layer(self, geo_data, min_mya, max_mya, scale_pos, scale_start, scale_size, is_horizontal, is_era):
+        """生成单层地质年代标尺"""
         for period in geo_data:
             # 检查是否在范围内
             if period["end"] < min_mya or period["start"] > max_mya:
@@ -387,6 +423,7 @@ class TimeScaleRenderer(QWidget):
                                             period["name"], QColor(period["color"]))
                 era_block.start_time = period["start"]
                 era_block.end_time = period["end"]
+                era_block.is_era = is_era  # 标记是否为代
                 self.elements.append(era_block)
 
                 # 显示终点时间标注
@@ -409,6 +446,7 @@ class TimeScaleRenderer(QWidget):
                                             period["name"], QColor(period["color"]))
                 era_block.start_time = period["start"]
                 era_block.end_time = period["end"]
+                era_block.is_era = is_era  # 标记是否为代
                 self.elements.append(era_block)
 
                 # 显示终点时间标注
@@ -749,7 +787,7 @@ class TimeScaleGenerator(QMainWindow):
         geo_type_layout = QHBoxLayout()
         geo_type_layout.addWidget(QLabel("地质年代类型:"))
         self.geo_type_combo = QComboBox()
-        self.geo_type_combo.addItems(["代 (Era)", "纪 (Period)"])
+        self.geo_type_combo.addItems(["代 (Era)", "纪 (Period)", "代和纪同时显示"])
         self.geo_type_combo.currentTextChanged.connect(self.on_parameter_change)
         geo_type_layout.addWidget(self.geo_type_combo)
         display_layout.addLayout(geo_type_layout)
@@ -988,7 +1026,12 @@ class TimeScaleGenerator(QMainWindow):
 
             # 地质年代类型
             geo_type = self.geo_type_combo.currentText()
-            self.renderer.geological_scale_type = "era" if "代" in geo_type else "period"
+            if "同时显示" in geo_type:
+                self.renderer.geological_scale_type = "both"
+            elif "代" in geo_type:
+                self.renderer.geological_scale_type = "era"
+            else:
+                self.renderer.geological_scale_type = "period"
 
             # 重新生成标尺
             self.renderer.generate_scale()
@@ -1094,36 +1137,71 @@ class TimeScaleGenerator(QMainWindow):
                 
                 # 绘制地质年代
                 if self.renderer.show_geological:
-                    geo_data = GEOLOGICAL_ERAS if self.renderer.geological_scale_type == "era" else GEOLOGICAL_PERIODS
-                    scale_height = 30 if self.renderer.geological_scale_type == "era" else 25
+                    show_era = self.renderer.geological_scale_type in ["era", "both"]
+                    show_period = self.renderer.geological_scale_type in ["period", "both"]
                     
-                    geo_y = scale_y - scale_height - 10 if self.renderer.start_direction == "top" else scale_y + self.renderer.scale_thickness + 10
+                    base_geo_y = scale_y + self.renderer.scale_thickness + 10 if self.renderer.start_direction == "bottom" else scale_y - 10
                     
-                    for period in geo_data:
-                        if period["end"] < min_mya or period["start"] > max_mya:
-                            continue
+                    # 显示代
+                    if show_era:
+                        era_height = 30
+                        era_y = base_geo_y if self.renderer.start_direction == "bottom" else base_geo_y - era_height
                         
-                        start_pos = max(period["start"], min_mya)
-                        end_pos = min(period["end"], max_mya)
+                        for period in GEOLOGICAL_ERAS:
+                            if period["end"] < min_mya or period["start"] > max_mya:
+                                continue
+                            
+                            start_pos = max(period["start"], min_mya)
+                            end_pos = min(period["end"], max_mya)
+                            
+                            progress_start = (start_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
+                            progress_end = (end_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
+                            
+                            x1 = scale_x + progress_start * scale_length
+                            rect_width = (progress_end - progress_start) * scale_length
+                            
+                            color = QColor(period["color"])
+                            c.setFillColorRGB(color.red()/255, color.green()/255, color.blue()/255)
+                            c.setStrokeColorRGB(0, 0, 0)
+                            c.rect(x1, era_y, rect_width, era_height, fill=1, stroke=1)
+                            
+                            c.setFillColorRGB(0, 0, 0)
+                            c.setFont("Helvetica", 8)
+                            text_x = x1 + rect_width / 2
+                            text_y = era_y + era_height / 2
+                            c.drawCentredString(text_x, text_y, period["name"])
+                    
+                    # 显示纪
+                    if show_period:
+                        period_height = 25
+                        if show_era:
+                            period_y = base_geo_y + era_height + 5 if self.renderer.start_direction == "bottom" else base_geo_y - era_height - 5 - period_height
+                        else:
+                            period_y = base_geo_y if self.renderer.start_direction == "bottom" else base_geo_y - period_height
                         
-                        progress_start = (start_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
-                        progress_end = (end_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
-                        
-                        x1 = scale_x + progress_start * scale_length
-                        rect_width = (progress_end - progress_start) * scale_length
-                        
-                        # 转换颜色
-                        color = QColor(period["color"])
-                        c.setFillColorRGB(color.red()/255, color.green()/255, color.blue()/255)
-                        c.setStrokeColorRGB(0, 0, 0)
-                        c.rect(x1, geo_y, rect_width, scale_height, fill=1, stroke=1)
-                        
-                        # 年代名称
-                        c.setFillColorRGB(0, 0, 0)
-                        c.setFont("Helvetica", 8)
-                        text_x = x1 + rect_width / 2
-                        text_y = geo_y + scale_height / 2
-                        c.drawCentredString(text_x, text_y, period["name"])
+                        for period in GEOLOGICAL_PERIODS:
+                            if period["end"] < min_mya or period["start"] > max_mya:
+                                continue
+                            
+                            start_pos = max(period["start"], min_mya)
+                            end_pos = min(period["end"], max_mya)
+                            
+                            progress_start = (start_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
+                            progress_end = (end_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
+                            
+                            x1 = scale_x + progress_start * scale_length
+                            rect_width = (progress_end - progress_start) * scale_length
+                            
+                            color = QColor(period["color"])
+                            c.setFillColorRGB(color.red()/255, color.green()/255, color.blue()/255)
+                            c.setStrokeColorRGB(0, 0, 0)
+                            c.rect(x1, period_y, rect_width, period_height, fill=1, stroke=1)
+                            
+                            c.setFillColorRGB(0, 0, 0)
+                            c.setFont("Helvetica", 7)
+                            text_x = x1 + rect_width / 2
+                            text_y = period_y + period_height / 2
+                            c.drawCentredString(text_x, text_y, period["name"])
                 
                 c.save()
                 QMessageBox.information(self, "成功", "PDF文件已成功导出")
@@ -1196,36 +1274,75 @@ class TimeScaleGenerator(QMainWindow):
                 
                 # 地质年代
                 if self.renderer.show_geological:
-                    geo_data = GEOLOGICAL_ERAS if self.renderer.geological_scale_type == "era" else GEOLOGICAL_PERIODS
-                    scale_height = 30 if self.renderer.geological_scale_type == "era" else 25
+                    show_era = self.renderer.geological_scale_type in ["era", "both"]
+                    show_period = self.renderer.geological_scale_type in ["period", "both"]
                     
-                    geo_y = scale_y - scale_height - 10 if self.renderer.start_direction == "top" else scale_y + self.renderer.scale_thickness + 10
+                    base_geo_y = scale_y + self.renderer.scale_thickness + 10 if self.renderer.start_direction == "bottom" else scale_y - 10
                     
-                    for period in geo_data:
-                        if period["end"] < min_mya or period["start"] > max_mya:
-                            continue
+                    # 显示代
+                    if show_era:
+                        era_height = 30
+                        era_y = base_geo_y if self.renderer.start_direction == "bottom" else base_geo_y - era_height
                         
-                        start_pos = max(period["start"], min_mya)
-                        end_pos = min(period["end"], max_mya)
+                        for period in GEOLOGICAL_ERAS:
+                            if period["end"] < min_mya or period["start"] > max_mya:
+                                continue
+                            
+                            start_pos = max(period["start"], min_mya)
+                            end_pos = min(period["end"], max_mya)
+                            
+                            progress_start = (start_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
+                            progress_end = (end_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
+                            
+                            x1 = scale_x + progress_start * self.renderer.scale_length
+                            rect_width = (progress_end - progress_start) * self.renderer.scale_length
+                            
+                            # 年代块
+                            svg.add(svgwrite.shapes.Rect(insert=(x1, era_y), 
+                                                        size=(rect_width, era_height),
+                                                        fill=period["color"], stroke="black"))
+                            
+                            # 年代名称
+                            text_x = x1 + rect_width / 2
+                            text_y = era_y + era_height / 2
+                            svg.add(svgwrite.text.Text(period["name"], 
+                                                      insert=(text_x, text_y),
+                                                      fill="black", font_size="8px",
+                                                      text_anchor="middle", dominant_baseline="middle"))
+                    
+                    # 显示纪
+                    if show_period:
+                        period_height = 25
+                        if show_era:
+                            period_y = base_geo_y + era_height + 5 if self.renderer.start_direction == "bottom" else base_geo_y - era_height - 5 - period_height
+                        else:
+                            period_y = base_geo_y if self.renderer.start_direction == "bottom" else base_geo_y - period_height
                         
-                        progress_start = (start_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
-                        progress_end = (end_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
-                        
-                        x1 = scale_x + progress_start * self.renderer.scale_length
-                        rect_width = (progress_end - progress_start) * self.renderer.scale_length
-                        
-                        # 年代块
-                        svg.add(svgwrite.shapes.Rect(insert=(x1, geo_y), 
-                                                    size=(rect_width, scale_height),
-                                                    fill=period["color"], stroke="black"))
-                        
-                        # 年代名称
-                        text_x = x1 + rect_width / 2
-                        text_y = geo_y + scale_height / 2
-                        svg.add(svgwrite.text.Text(period["name"], 
-                                                  insert=(text_x, text_y),
-                                                  fill="black", font_size="8px",
-                                                  text_anchor="middle", dominant_baseline="middle"))
+                        for period in GEOLOGICAL_PERIODS:
+                            if period["end"] < min_mya or period["start"] > max_mya:
+                                continue
+                            
+                            start_pos = max(period["start"], min_mya)
+                            end_pos = min(period["end"], max_mya)
+                            
+                            progress_start = (start_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
+                            progress_end = (end_pos - min_mya) / (max_mya - min_mya) if (max_mya - min_mya) > 0 else 0
+                            
+                            x1 = scale_x + progress_start * self.renderer.scale_length
+                            rect_width = (progress_end - progress_start) * self.renderer.scale_length
+                            
+                            # 年代块
+                            svg.add(svgwrite.shapes.Rect(insert=(x1, period_y), 
+                                                        size=(rect_width, period_height),
+                                                        fill=period["color"], stroke="black"))
+                            
+                            # 年代名称
+                            text_x = x1 + rect_width / 2
+                            text_y = period_y + period_height / 2
+                            svg.add(svgwrite.text.Text(period["name"], 
+                                                      insert=(text_x, text_y),
+                                                      fill="black", font_size="7px",
+                                                      text_anchor="middle", dominant_baseline="middle"))
                 
                 svg.save()
                 QMessageBox.information(self, "成功", "SVG文件已成功导出")
