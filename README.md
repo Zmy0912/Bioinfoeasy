@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/v/release/Zmy0912/Bioinfoeasy)](https://github.com/Zmy0912/Bioinfoeasy/releases)
 [![GitHub license](https://img.shields.io/github/license/Zmy0912/Bioinfoeasy)](https://github.com/Zmy0912/Bioinfoeasy/blob/master/LICENSE)
-[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.18545517.svg)](https://doi.org/10.5281/zenodo.18545517)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.19305267.svg)](https://doi.org/10.5281/zenodo.19305267)
 
 > **Official update v0.1.0** | Bioinfoeasy: A software package that makes bioinformatics work easier.
 
