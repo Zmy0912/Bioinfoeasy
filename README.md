@@ -8,7 +8,7 @@
 
 ---
 
-## Welcome everyone to use it and cite my Zenodo link: [https://doi.org/10.5281/zenodo.18545517](https://doi.org/10.5281/zenodo.18545517)
+## Welcome everyone to use it and cite my Zenodo link: [https://doi.org/10.5281/zenodo.19305267](https://doi.org/10.5281/zenodo.19305267)
 
 ---
 
@@ -204,7 +204,7 @@ If you use Bioinfoeasy in your research, please cite:
   publisher    = {Zenodo},
   version      = {v0.1.0},
   doi          = {10.5281/zenodo.18545517},
-  url          = {https://doi.org/10.5281/zenodo.18545517}
+  url          = {https://doi.org/10.5281/zenodo.19305267}
 }
 ```
 
