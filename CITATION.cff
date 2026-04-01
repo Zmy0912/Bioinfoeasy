@@ -1,10 +1,9 @@
 # This CITATION.cff file was generated with cffinit.
 # Visit https://bit.ly/cffinit to generate yours today!
 
-cff-version: 1.2.0
+cff-version: 0.1.0
 title: >-
-  Bioinfo: software package for biological sequence data processing and
-  analysis.
+  Bioinfoeasy: A Software Package for Simplifying Bioinformatics Analysis.
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -13,8 +12,8 @@ authors:
   - given-names: Mingyuan
     family-names: Zhang
     email: myzhang0726@foxmail.com
-repository-code: 'https://github.com/Zmy0912/Bioinfo'
-url: 'https://github.com/Zmy0912/Bioinfo'
+repository-code: 'https://github.com/Zmy0912/Bioinfoeasy'
+url: 'https://github.com/Zmy0912/Bioinfoeasy'
 doi: 10.5281/zenodo.18472732
 abstract: >-
   This project provides a collection of simple and practical
@@ -24,6 +23,6 @@ keywords:
   - Seq
 license: MIT
 commit: >-
-  sha256:fa490a21550961881205451a1e62fc935a15e454e8b0e704f1257ea6c5285539
-version: v1.2.1
-date-released: '2026-02-09'
+  sha256:97d2829818ed0820153d5f50805fce2fd02232de19a6ff55c164935d76bb70b2
+version: v0.1.0
+date-released: '2026-04-01'

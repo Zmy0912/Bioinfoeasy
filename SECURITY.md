@@ -7,7 +7,7 @@ We maintain security updates for the following versions:
 | Version | Supported          |
 |---------|--------------------|
 | Current | ✅ Yes             |
-| < 1.0   | ❌ No              |
+| < 1.0   | ✅ Yes             |
 
 ## Reporting a Vulnerability
 
@@ -21,7 +21,7 @@ If you discover a security vulnerability, please report it privately rather than
 
 **Steps to report:**
 
-1. **Email**: Send details to [myzhang0726@qq.com]
+1. **Email**: Send details to [myzhang0726@foxmail.com]
 2. **Format**: Include "SECURITY" in the subject line
 3. **Information to include**:
    - Description of the vulnerability
@@ -83,4 +83,4 @@ For security-related questions not related to vulnerability reports, please open
 
 ---
 
-*Last updated: January 2026*
+*Last updated: April 2026*
