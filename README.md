@@ -12,11 +12,11 @@
 
 ## Acknowledgments
 
-> 山高水长，莫失莫忘
->
+<p style="font-size: 20px;">**山高水长，莫失莫忘**</p>
+
 > *(Though mountains are high and waters long, never forget each other)*
 
-I will forever remember the help that Zhang N.L., whose birthday is September 12, brought me during my confused youth. My best wishes to you.
+I will forever remember the guidance from the one who illuminated my path during those early years. My best wishes to you.
 
 ---
 
