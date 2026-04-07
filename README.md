@@ -12,7 +12,7 @@
 
 ## Acknowledgments
 
-<p style="font-size: 20px;">*山高水长，莫失莫忘*</p>
+<p style="font-size: 28px; font-weight: bold;">山高水长，莫失莫忘</p>
 
 > *(Though mountains are high and waters long, never forget each other)*
 
