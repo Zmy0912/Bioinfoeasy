@@ -4,9 +4,8 @@
 [![GitHub license](https://img.shields.io/github/license/Zmy0912/Bioinfoeasy)](https://github.com/Zmy0912/Bioinfoeasy/blob/master/LICENSE)
 [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.19305267.svg)](https://doi.org/10.5281/zenodo.19305267)
 
-> **Official update v0.1.0** | Bioinfoeasy: A software package that makes bioinformatics work easier.
->
-> **Great update!** You can now use the software to carry out a complete codon preference analysis process!
+> **Official update v0.1.1** | Bioinfoeasy: A software package that makes bioinformatics work easier.
+
 
 ---
 
