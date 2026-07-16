@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文件列表查看器</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif; background: #f0f2f5; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 30px 15px; }
+.container { width: 100%; max-width: 1100px; background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.1); overflow: hidden; }
+.header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 20px 24px; }
+.header h1 { font-size: 20px; font-weight: 600; }
+.header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+
+/* 拖拽区域 */
+.drop-zone { margin: 20px 24px; border: 2px dashed #d0d5dd; border-radius: 10px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.25s; background: #fafbfc; }
+.drop-zone:hover, .drop-zone.active { border-color: #667eea; background: #f0f1ff; }
+.drop-zone .icon { font-size: 48px; margin-bottom: 10px; }
+.drop-zone .title { font-size: 16px; color: #333; font-weight: 600; margin-bottom: 4px; }
+.drop-zone .hint { font-size: 13px; color: #999; }
+.drop-zone .browse-btn { display: inline-block; margin-top: 12px; padding: 8px 22px; background: #667eea; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
+.drop-zone .browse-btn:hover { background: #5a6fd6; }
+.drop-zone input[type="file"] { display: none; }
+
+/* 信息栏 */
+.info-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; border-bottom: 1px solid #eee; flex-wrap: wrap; gap: 10px; }
+.info-bar .stats { font-size: 14px; color: #555; }
+.info-bar .stats span { font-weight: 600; color: #667eea; }
+.info-bar .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.info-bar .actions button { padding: 7px 16px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; transition: all 0.15s; }
+.info-bar .actions button:hover { background: #f5f5f5; border-color: #ccc; }
+.info-bar .actions button.primary { background: #667eea; color: #fff; border-color: #667eea; }
+.info-bar .actions button.primary:hover { background: #5a6fd6; }
+
+/* 搜索 */
+.search-box { margin: 0 24px 12px; }
+.search-box input { width: 100%; padding: 8px 14px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; outline: none; transition: border 0.2s; }
+.search-box input:focus { border-color: #667eea; }
+
+/* 表格 */
+.table-wrap { max-height: 55vh; overflow: auto; margin: 0 24px 20px; border: 1px solid #eee; border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead { position: sticky; top: 0; z-index: 2; }
+thead th { background: #f8f9fb; color: #555; font-weight: 600; padding: 11px 14px; text-align: left; border-bottom: 2px solid #e0e0e0; cursor: pointer; user-select: none; white-space: nowrap; }
+thead th:hover { background: #eef0f5; }
+thead th .arrow { margin-left: 4px; font-size: 11px; }
+tbody td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; color: #333; max-width: 400px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+tbody tr:hover { background: #f6f7ff; }
+tbody tr.selected { background: #e8ecff; }
+.col-no { width: 60px; text-align: center; }
+.col-ext { width: 90px; text-align: center; }
+.col-size { width: 100px; text-align: right; }
+.col-date { width: 150px; text-align: center; }
+td.col-size { text-align: right; }
+.ext-badge { display: inline-block; padding: 2px 10px; background: #eef1ff; color: #667eea; border-radius: 20px; font-size: 12px; font-weight: 500; }
+.empty-state { text-align: center; padding: 60px 20px; color: #aaa; }
+.empty-state .big-icon { font-size: 64px; }
+.empty-state p { margin-top: 10px; font-size: 15px; }
+
+/* Toast */
+.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 24px; border-radius: 20px; font-size: 14px; opacity: 0; transition: opacity 0.3s; z-index: 999; pointer-events: none; }
+.toast.show { opacity: 1; }
+
+@media (max-width: 640px) {
+  .header { padding: 16px; }
+  .drop-zone { margin: 12px 16px; padding: 24px 12px; }
+  .info-bar { padding: 10px 16px; }
+  .table-wrap { margin: 0 12px 12px; }
+  .search-box { margin: 0 12px 10px; }
+  .col-date { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>&#128194; 文件列表查看器</h1>
+    <p>选择文件夹，一键列出所有文件名（含扩展名），以表格形式展示</p>
+  </div>
+
+  <!-- 拖拽区域 -->
+  <div class="drop-zone" id="dropZone">
+    <div class="icon">&#128194;</div>
+    <div class="title">拖拽文件夹到此处</div>
+    <div class="hint">或点击下方按钮选择文件夹</div>
+    <button class="browse-btn" id="browseBtn">选择文件夹</button>
+    <input type="file" id="folderInput" webkitdirectory directory multiple style="display:none">
+  </div>
+
+  <!-- 信息栏 -->
+  <div class="info-bar" id="infoBar" style="display:none">
+    <div class="stats" id="stats"></div>
+    <div class="actions">
+      <button onclick="copyAllFilenames()" title="复制全部文件名">&#128203; 复制全部</button>
+      <button onclick="copySelectedFilenames()" title="复制选中文件名">&#128221; 复制选中</button>
+      <button class="primary" onclick="exportCSV()">&#128190; 导出 CSV</button>
+    </div>
+  </div>
+
+  <!-- 搜索 -->
+  <div class="search-box" id="searchBox" style="display:none">
+    <input type="text" id="searchInput" placeholder="&#128269; 输入关键词搜索文件名..." oninput="filterTable()">
+  </div>
+
+  <!-- 表格 -->
+  <div class="table-wrap" id="tableWrap">
+    <div class="empty-state" id="emptyState">
+      <div class="big-icon">&#128194;</div>
+      <p>请选择或拖拽一个文件夹开始查看文件列表</p>
+    </div>
+    <table id="fileTable" style="display:none">
+      <thead>
+        <tr>
+          <th class="col-no" onclick="sortTable(0)">序号 <span class="arrow">&#8597;</span></th>
+          <th onclick="sortTable(1)">文件名 <span class="arrow">&#8597;</span></th>
+          <th class="col-ext" onclick="sortTable(2)">扩展名 <span class="arrow">&#8597;</span></th>
+          <th class="col-size" onclick="sortTable(3)">大小 <span class="arrow">&#8597;</span></th>
+          <th class="col-date" onclick="sortTable(4)">修改日期 <span class="arrow">&#8597;</span></th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let allFiles = [];
+let currentSort = { col: -1, asc: true };
+
+// ========== Drag & Drop ==========
+const dropZone = document.getElementById('dropZone');
+const folderInput = document.getElementById('folderInput');
+const browseBtn = document.getElementById('browseBtn');
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('active'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('active'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('active');
+  const items = e.dataTransfer.items;
+  if (!items) return;
+  processDropItems(items);
+});
+
+browseBtn.addEventListener('click', () => folderInput.click());
+folderInput.addEventListener('change', () => processFileList(folderInput.files));
+
+function processDropItems(items) {
+  let allDropFiles = [];
+  let pending = 0;
+  for (let i = 0; i < items.length; i++) {
+    const entry = items[i].webkitGetAsEntry();
+    if (entry) {
+      pending++;
+      traverseEntry(entry, '', results => {
+        allDropFiles = allDropFiles.concat(results);
+        pending--;
+        if (pending === 0) processFiles(allDropFiles);
+      });
+    }
+  }
+  if (pending === 0 && allDropFiles.length > 0) processFiles(allDropFiles);
+}
+
+function traverseEntry(entry, prefix, callback) {
+  if (entry.isFile) {
+    entry.file(file => callback([{ file: file, relativePath: prefix + file.name }]));
+  } else if (entry.isDirectory) {
+    const reader = entry.createReader();
+    reader.readEntries(entries => {
+      let results = [];
+      let pending = entries.length;
+      if (pending === 0) { callback(results); return; }
+      entries.forEach(child => {
+        traverseEntry(child, prefix + entry.name + '/', res => {
+          results = results.concat(res);
+          pending--;
+          if (pending === 0) callback(results);
+        });
+      });
+    });
+  }
+}
+
+function processFileList(fileList) {
+  const files = [];
+  for (let i = 0; i < fileList.length; i++) {
+    const f = fileList[i];
+    const relPath = f.webkitRelativePath || f.name;
+    if (f.size > 0 || f.type !== '') {
+      files.push({ file: f, relativePath: relPath });
+    }
+  }
+  processFiles(files);
+}
+
+function processFiles(files) {
+  if (files.length === 0) {
+    showToast('未找到任何文件');
+    return;
+  }
+
+  // 找到共同根目录
+  const paths = files.map(f => f.relativePath);
+  const commonRoot = findCommonRoot(paths);
+
+  allFiles = files.filter(f => {
+    // 排除目录路径（只保留一级文件）
+    const rel = f.relativePath;
+    if (rel.startsWith(commonRoot)) {
+      const sub = rel.substring(commonRoot.length);
+      return sub.indexOf('/') === -1; // 只在根目录下的文件
+    }
+    return true;
+  }).map((f, i) => {
+    const rel = f.relativePath;
+    const subPath = rel.startsWith(commonRoot) ? rel.substring(commonRoot.length) : rel;
+    const name = subPath || f.file.name;
+    const extIdx = name.lastIndexOf('.');
+    const fname = extIdx > 0 ? name.substring(0, extIdx) : name;
+    const ext = extIdx > 0 ? name.substring(extIdx) : '(无)';
+    const date = f.file.lastModified ? new Date(f.file.lastModified).toLocaleString('zh-CN', { hour12: false }) : '--';
+    const size = formatSize(f.file.size);
+    return {
+      idx: i + 1,
+      name: name,
+      fname: fname,
+      ext: ext,
+      size: size,
+      sizeBytes: f.file.size,
+      date: date,
+      timestamp: f.file.lastModified || 0
+    };
+  });
+
+  // 按名称排序
+  allFiles.sort((a, b) => a.name.localeCompare(b.name, 'zh'));
+  allFiles.forEach((f, i) => f.idx = i + 1);
+
+  renderTable();
+  showToast('已加载 ' + allFiles.length + ' 个文件');
+}
+
+function findCommonRoot(paths) {
+  if (paths.length === 0) return '';
+  const parts = paths[0].split('/');
+  let root = '';
+  for (let i = 0; i < parts.length - 1; i++) {
+    const prefix = parts.slice(0, i + 1).join('/') + '/';
+    if (paths.every(p => p.startsWith(prefix))) {
+      root = prefix;
+    } else {
+      break;
+    }
+  }
+  return root;
+}
+
+function formatSize(bytes) {
+  if (bytes === undefined || bytes === null) return '--';
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+}
+
+// ========== Table Rendering ==========
+function renderTable(filterText = '') {
+  const tbody = document.getElementById('tableBody');
+  const table = document.getElementById('fileTable');
+  const emptyState = document.getElementById('emptyState');
+  const infoBar = document.getElementById('infoBar');
+  const searchBox = document.getElementById('searchBox');
+
+  if (allFiles.length === 0) {
+    table.style.display = 'none';
+    emptyState.style.display = '';
+    infoBar.style.display = 'none';
+    searchBox.style.display = 'none';
+    return;
+  }
+
+  let filtered = allFiles;
+  if (filterText) {
+    const lower = filterText.toLowerCase();
+    filtered = allFiles.filter(f => f.name.toLowerCase().includes(lower));
+  }
+
+  table.style.display = '';
+  emptyState.style.display = 'none';
+  infoBar.style.display = 'flex';
+  searchBox.style.display = '';
+
+  tbody.innerHTML = '';
+  let totalBytes = 0;
+  filtered.forEach((f, i) => {
+    totalBytes += f.sizeBytes || 0;
+    const tr = document.createElement('tr');
+    tr.setAttribute('data-idx', f.idx);
+    tr.setAttribute('data-name', f.name);
+    tr.setAttribute('data-fname', f.fname);
+    tr.setAttribute('data-ext', f.ext);
+    tr.setAttribute('data-size', f.sizeBytes);
+    tr.setAttribute('data-date', f.timestamp);
+    tr.onclick = function(e) {
+      if (e.ctrlKey || e.metaKey) {
+        this.classList.toggle('selected');
+      } else {
+        const all = tbody.querySelectorAll('tr');
+        const wasSelected = this.classList.contains('selected');
+        all.forEach(r => r.classList.remove('selected'));
+        if (!wasSelected) this.classList.add('selected');
+      }
+    };
+    tr.innerHTML = `
+      <td class="col-no">${i + 1}</td>
+      <td title="${f.name}">${f.name}</td>
+      <td class="col-ext"><span class="ext-badge">${f.ext}</span></td>
+      <td class="col-size">${f.size}</td>
+      <td class="col-date">${f.date}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById('stats').innerHTML =
+    `共 <span>${filtered.length}</span> 个文件` +
+    (filtered.length !== allFiles.length ? ` (筛选自 ${allFiles.length})` : '') +
+    ` | 总大小: <span>${formatSize(totalBytes)}</span>`;
+}
+
+function filterTable() {
+  const text = document.getElementById('searchInput').value.trim();
+  renderTable(text);
+}
+
+// ========== Sort ==========
+function sortTable(colIndex) {
+  if (currentSort.col === colIndex) {
+    currentSort.asc = !currentSort.asc;
+  } else {
+    currentSort.col = colIndex;
+    currentSort.asc = true;
+  }
+
+  const keyMap = ['idx', 'name', 'ext', 'sizeBytes', 'timestamp'];
+  const key = keyMap[colIndex] || 'name';
+
+  allFiles.sort((a, b) => {
+    let va = a[key], vb = b[key];
+    if (typeof va === 'string') return currentSort.asc ? va.localeCompare(vb, 'zh') : vb.localeCompare(va, 'zh');
+    return currentSort.asc ? va - vb : vb - va;
+  });
+
+  allFiles.forEach((f, i) => f.idx = i + 1);
+  renderTable(document.getElementById('searchInput').value.trim());
+}
+
+// ========== Copy & Export ==========
+function getSelectedFiles() {
+  const rows = document.querySelectorAll('#tableBody tr.selected');
+  const result = [];
+  rows.forEach(r => result.push(r.getAttribute('data-name')));
+  return result;
+}
+
+function copyAllFilenames() {
+  if (allFiles.length === 0) { showToast('没有文件可复制'); return; }
+  const text = document.getElementById('searchInput').value.trim()
+    ? Array.from(document.querySelectorAll('#tableBody tr')).map(r => r.getAttribute('data-name')).join('\n')
+    : allFiles.map(f => f.name).join('\n');
+  copyToClipboard(text);
+  showToast('已复制文件名到剪贴板');
+}
+
+function copySelectedFilenames() {
+  const sel = getSelectedFiles();
+  if (sel.length === 0) { showToast('请先在表格中点击选择文件（Ctrl+点击多选）'); return; }
+  copyToClipboard(sel.join('\n'));
+  showToast('已复制 ' + sel.length + ' 个文件名');
+}
+
+function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text);
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  }
+}
+
+function exportCSV() {
+  if (allFiles.length === 0) { showToast('没有数据可导出'); return; }
+  const filtered = document.getElementById('searchInput').value.trim()
+    ? Array.from(document.querySelectorAll('#tableBody tr'))
+    : null;
+  const list = filtered
+    ? filtered.map(r => allFiles.find(f => f.name === r.getAttribute('data-name'))).filter(Boolean)
+    : allFiles;
+
+  let csv = '\uFEFF序号,文件名,扩展名,大小,修改日期\n';
+  list.forEach((f, i) => {
+    csv += `${i + 1},"${f.name}","${f.ext}","${f.size}","${f.date}"\n`;
+  });
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = '文件列表_' + new Date().toISOString().slice(0, 10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('CSV 已导出');
+}
+
+// ========== Toast ==========
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// ========== Keyboard ==========
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'a') {
+    if (document.activeElement !== document.getElementById('searchInput')) {
+      e.preventDefault();
+      document.querySelectorAll('#tableBody tr').forEach(r => r.classList.add('selected'));
+    }
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+    const sel = getSelectedFiles();
+    if (sel.length > 0 && document.activeElement !== document.getElementById('searchInput')) {
+      copyToClipboard(sel.join('\n'));
+      showToast('已复制 ' + sel.length + ' 个文件名');
+    }
+  }
+});
+</script>
+</body>
+</html>
