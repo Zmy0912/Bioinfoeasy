@@ -1,0 +1,9 @@
+# Genome Annotation Analysis Tool - Dependencies
+# Install with: pip install -r requirements.txt
+
+biopython>=1.81
+pandas>=1.5.0
+openpyxl>=3.0.0
+
+# Optional: full GFF/GFF3 parsing (the tool falls back to a simplified parser if missing)
+bcbio-gff>=0.6.0

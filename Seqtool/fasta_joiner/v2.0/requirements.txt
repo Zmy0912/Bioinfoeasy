@@ -1,0 +1,4 @@
+# FASTA Sequence Joiner dependencies
+# Python >= 3.6 (tkinter ships with the standard Python install)
+
+biopython>=1.79
