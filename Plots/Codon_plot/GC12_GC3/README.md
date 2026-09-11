@@ -1,0 +1,30 @@
+# GC12-GC3 Plotter
+
+A GUI application for plotting GC12-GC3 neutrality graphs from codon usage
+tables (e.g. CodonW `*.out` files), used to test the mutation-selection
+equilibrium hypothesis of codon usage bias.
+
+## Contents
+
+| Version | Description |
+|---------|-------------|
+| [`v1.0.0/`](v1.0.0/) | Initial release: neutrality plot, linear regression, neutral reference line, style customization |
+| [`v2.0.0/`](v2.0.0/) | Current release — adds gene-function coloring and folder (batch) mode with combined grid figures |
+
+Each version contains `gc12_gc3_plotter.py` and a `README.md` with full usage
+instructions and the interpretation of the plot.
+
+## Requirements
+
+- Python 3.6+
+- `matplotlib`, `numpy`
+- `tkinter` (ships with CPython)
+
+## Usage
+
+```bash
+cd v2.0.0
+python gc12_gc3_plotter.py
+```
+
+Back to [Codon Plot](../README.md) · [project root](../../../README.md).

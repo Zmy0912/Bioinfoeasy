@@ -1,0 +1,42 @@
+# ============================================================
+# Bioinfoeasy - EditorConfig
+# https://editorconfig.org
+# ============================================================
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{py,pyi}]
+indent_size = 4
+max_line_length = 120
+
+[*.{js,ts,jsx,tsx,json,yml,yaml,html,css}]
+indent_size = 2
+
+[*.{md,markdown}]
+trim_trailing_whitespace = false
+max_line_length = off
+
+[*.{R,r}]
+indent_size = 2
+
+[*.{bat,cmd}]
+end_of_line = crlf
+indent_size = 4
+
+[*.{sh,bash}]
+end_of_line = lf
+indent_size = 4
+
+[Makefile]
+indent_style = tab
+
+[*.{fasta,fa,fas,fna,gff,gff3,bed,gb,gbk,csv,tsv}]
+insert_final_newline = false

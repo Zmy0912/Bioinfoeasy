@@ -1,0 +1,41 @@
+# ============================================================
+# Bioinfoeasy - Common Dependencies
+# ============================================================
+# Aggregate of the dependencies used across all tools.
+# Each individual tool also ships its own requirements.txt
+# with the minimal set of packages it needs; prefer installing
+# that file when you only use one tool.
+#
+#   pip install -r requirements.txt          # everything below
+#   pip install -r <tool_dir>/requirements.txt   # single tool
+#
+# Python 3.7+ is required (Python 3.9+ recommended).
+# ------------------------------------------------------------
+
+# --- Core sequence / annotation handling ---
+biopython>=1.81
+bcbio-gff>=0.6.6
+
+# --- Data processing ---
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0
+
+# --- Statistics ---
+scipy>=1.9.0
+
+# --- Visualization ---
+matplotlib>=3.7.0
+seaborn>=0.12.0
+Pillow>=10.3.0
+
+# --- GUI toolkit (Time Scale Generator) ---
+PyQt5>=5.15.10
+
+# --- Vector / PDF output (Time Scale Generator) ---
+reportlab>=4.0.7
+svgwrite>=1.4.3
+
+# Note: tkinter-based GUI tools rely on tkinter, which ships
+# with the standard CPython installer. On Linux install it via
+# your package manager (e.g. `sudo apt install python3-tk`).

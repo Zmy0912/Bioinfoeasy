@@ -1,0 +1,111 @@
+# ============================================================
+# Bioinfoeasy - Git Ignore Rules
+# ============================================================
+
+# ---------------- Python ----------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+eggs/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing / coverage
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Type checkers / linters / formatters
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+.pytype/
+.cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ---------------- R ----------------
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+
+# ---------------- Editors / IDEs ----------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.spyderproject
+.spyproject
+
+# ---------------- OS ----------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ---------------- Tool outputs ----------------
+# Generated figures and reports.
+# NOTE: `core.ignorecase` is true on Windows/macOS, so ignore patterns are
+# matched case-insensitively. A bare `plots/` rule would therefore also match
+# the source directory `Plots/` and silently drop the whole plotting toolkit,
+# so that rule is intentionally omitted here.
+output/
+outputs/
+out/
+results/
+figures/
+individual_plots/
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+*.svg
+*.eps
+*.pdf
+
+# Excel / CSV exports produced by the tools
+*-results.xlsx
+*-report.xlsx
+result.xlsx
+results.csv
+
+# Temporary / scratch files
+*.tmp
+*.bak
+*.old
+*.log
+*_test_output*
+test_output/
+scratch/
+sandbox/
+
+# NOTE: CodonW `*.out` files are *inputs* for the codon-plot tools,
+# so they are intentionally NOT ignored. Add example data on purpose.

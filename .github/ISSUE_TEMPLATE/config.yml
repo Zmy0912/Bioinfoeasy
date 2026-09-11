@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation / 使用文档
+    url: https://github.com/Zmy0912/Bioinfoeasy#readme
+    about: Please read the README and each tool's own README before opening an issue.
+  - name: 💬 Questions & Discussions / 问题与讨论
+    url: https://github.com/Zmy0912/Bioinfoeasy/discussions
+    about: Ask questions and discuss ideas with the community.
+  - name: 🔐 Security Report / 安全报告
+    url: https://github.com/Zmy0912/Bioinfoeasy/blob/main/SECURITY.md
+    about: Please report security vulnerabilities privately as described in SECURITY.md.

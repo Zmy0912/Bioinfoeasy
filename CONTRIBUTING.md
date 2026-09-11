@@ -8,7 +8,7 @@ Thank you for your interest in this project! We welcome contributions of any kin
 
 If you find a bug or have a feature suggestion:
 
-1. Check the [Issues](https://github.com/Zmy0912/Bioinfo/issues) list to make sure the issue hasn't been reported
+1. Check the [Issues](https://github.com/Zmy0912/Bioinfoeasy/issues) list to make sure the issue hasn't been reported
 2. If there's no related issue, create a new one
 3. In the issue, clearly describe:
    - The problem you encountered or the feature you suggest
@@ -26,8 +26,8 @@ Click the Fork button in the top right corner to copy the repository to your Git
 #### 2. Clone the Repository
 
 ```bash
-git clone https://github.com/Zmy0912/Bioinfo.git
-cd Bioinfo
+git clone https://github.com/Zmy0912/Bioinfoeasy.git
+cd Bioinfoeasy
 ```
 
 #### 3. Create a Branch
@@ -120,7 +120,7 @@ By contributing code, you agree that your contributions will be licensed under t
 
 If you have any questions:
 
-- Ask in [Issues](https://github.com/Zmy0912/Bioinfo/issues)
+- Ask in [Issues](https://github.com/Zmy0912/Bioinfoeasy/issues)
 - Join our discussion area
 
 ---

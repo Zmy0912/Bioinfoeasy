@@ -1,0 +1,55 @@
+# ============================================================
+# Bioinfoeasy - Git Attributes
+# ============================================================
+
+# Normalize line endings: check out as-is, commit LF, never convert
+* text=auto eol=lf
+
+# Windows launchers must keep CRLF to run reliably
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Shell scripts use LF
+*.sh text eol=lf
+
+# Explicit source types
+*.py   text diff=python
+*.md   text diff=markdown
+*.txt  text
+*.yml  text
+*.yaml text
+*.json text
+*.toml text
+*.cfg  text
+*.ini  text
+
+# Language / data formats
+*.R    text
+*.r    text
+*.fasta text
+*.fa   text
+*.fas  text
+*.fna  text
+*.gff  text
+*.gff3 text
+*.bed  text
+*.gb   text
+*.gbk  text
+*.csv  text
+*.tsv  text
+
+# Binary assets
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.xlsx binary
+*.xls  binary
+*.zip  binary
+*.gz   binary
+
+# Keep these out of language statistics
+LICENSE           linguist-vendored
+archive/**        linguist-documentation

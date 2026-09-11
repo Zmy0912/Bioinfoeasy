@@ -1,28 +1,37 @@
 # This CITATION.cff file was generated with cffinit.
 # Visit https://bit.ly/cffinit to generate yours today!
 
-cff-version: 0.1.0
-title: >-
-  Bioinfoeasy: A Software Package for Simplifying Bioinformatics Analysis.
+cff-version: 1.2.0
 message: >-
-  If you use this software, please cite it using the
+  If you use this software in your research, please cite it using the
   metadata from this file.
+title: >-
+  Bioinfoeasy: A Software Package for Simplifying Bioinformatics Analysis
 type: software
 authors:
   - given-names: Mingyuan
     family-names: Zhang
+    alias: Zmy0912
     email: myzhang0726@foxmail.com
 repository-code: 'https://github.com/Zmy0912/Bioinfoeasy'
 url: 'https://github.com/Zmy0912/Bioinfoeasy'
-doi: 10.5281/zenodo.19305267  
-abstract: >-
-  This project provides a collection of simple and practical
-  bioinformatics tools for biological sequence data
-  processing and analysis.
-keywords:
-  - Seq
 license: MIT
-commit: >-
-  sha256:97d2829818ed0820153d5f50805fce2fd02232de19a6ff55c164935d76bb70b2
-version: v0.1.0
-date-released: '2026-04-01'
+doi: 10.5281/zenodo.22712158
+version: '0.1.2'
+date-released: '2026-09-12'
+abstract: >-
+  Bioinfoeasy provides a collection of simple and practical bioinformatics
+  tools for biological sequence data processing, analysis and visualization,
+  covering genome annotation analysis, sequence processing, repeat analysis,
+  codon usage bias analysis, and publication-quality plotting. Most tools
+  provide both English and Chinese interfaces and run entirely on the local
+  machine.
+keywords:
+  - bioinformatics
+  - sequence-analysis
+  - fasta
+  - chloroplast-genome
+  - codon-usage-bias
+  - genome-annotation
+  - data-visualization
+  - python
