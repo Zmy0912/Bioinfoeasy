@@ -17,21 +17,24 @@ repository-code: 'https://github.com/Zmy0912/Bioinfoeasy'
 url: 'https://github.com/Zmy0912/Bioinfoeasy'
 license: MIT
 doi: 10.5281/zenodo.22712158
-version: '0.1.2'
-date-released: '2026-09-12'
+version: '0.1.3'
+date-released: '2026-10-17'
 abstract: >-
   Bioinfoeasy provides a collection of simple and practical bioinformatics
   tools for biological sequence data processing, analysis and visualization,
   covering genome annotation analysis, sequence processing, repeat analysis,
-  codon usage bias analysis, and publication-quality plotting. Most tools
-  provide both English and Chinese interfaces and run entirely on the local
-  machine.
+  codon usage bias analysis, Ka/Ks selection pressure, SSR classification and
+  publication-quality plotting. Most tools provide both English and Chinese
+  interfaces and run entirely on the local machine.
 keywords:
   - bioinformatics
   - sequence-analysis
   - fasta
   - chloroplast-genome
   - codon-usage-bias
+  - correspondence-analysis
+  - kaks
+  - ssr
   - genome-annotation
   - data-visualization
   - python

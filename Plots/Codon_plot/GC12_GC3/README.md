@@ -15,6 +15,12 @@ equilibrium hypothesis of codon usage bias.
 Each version contains `gc12_gc3_plotter.py` and a `README.md` with full usage
 instructions and the interpretation of the plot.
 
+## Companion tool
+
+| Tool | Description |
+|------|-------------|
+| [`gc12_gc3_regression_table/`](gc12_gc3_regression_table/) | Uses exactly the same calculation as `v3.0.0`, but reports the statistics as a sortable table (one row per species) instead of drawing figures. Supports single-file and folder batch modes, a name prefix, and UTF-8 BOM CSV export. |
+
 ## Requirements
 
 - Python 3.6+
@@ -24,8 +30,13 @@ instructions and the interpretation of the plot.
 ## Usage
 
 ```bash
+# Plot version
 cd v3.0.0
 python gc12_gc3_plotter.py
+
+# Table version (batch regression statistics)
+cd gc12_gc3_regression_table
+python gc12_gc3_regression_table.py
 ```
 
 Back to [Codon Plot](../README.md) · [project root](../../../README.md).
